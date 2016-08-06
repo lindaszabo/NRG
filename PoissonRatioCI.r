@@ -23,25 +23,7 @@ ggplot(data=CI, aes(x=reads, y=ratio, color=CIbound)) +
   geom_line()
 
 #### FIGURE 4B, fewer read counts in RNaseR with different depths affect confidence interval ####
-# libA_seq_depth = 100000000  # fixed number of reads in 1 library (RNaseR)
-# libB_min_seq_depth = 100000000  # min number in other library (Control)
-# libB_max_seq_depth = 300000000
-# RNaseR_read_count = 50
-# Control_read_count = 100
-# ndepths = 100
-# libB_depths = seq(libB_min_seq_depth, libB_max_seq_depth, length.out = ndepths)
-# 
-# upperCI = data.frame(ratio=c(rep(0, ndepths)), CIbound=c(rep("Upper", ndepths)), Controldepth=libB_depths/libA_seq_depth)
-# lowerCI = data.frame(ratio=c(rep(0, ndepths)), CIbound=c(rep("Lower", ndepths)), Controldepth=libB_depths/libA_seq_depth)
-# for (i in 1:ndepths){
-#   cur_val = rateratio.test(c(RNaseR_read_count,Control_read_count), c(libA_seq_depth, libB_depths[i]))$conf.int
-#   lowerCI[i,"ratio"] = cur_val[1]
-#   upperCI[i,"ratio"] = cur_val[2]
-# }
-# 
-# CI = rbind(upperCI, lowerCI)
-# ggplot(data=CI, aes(x=Controldepth, y=ratio, color=CIbound)) +
-#   geom_line()
+
 
 # assume 5-fold enrichment in RNaseR
 # rate is 20 per 100 million reads in control library
@@ -66,6 +48,7 @@ ggplot(data=df, aes(x=ratio, color=depth)) +
   theme(axis.text=element_text(size=12,face="bold"), axis.title=element_text(size=14,face="bold"), legend.text=element_text(size=12,face="bold"), 
         legend.title=element_text(size=14,face="bold"), plot.title=element_text(size=18,face="bold")) 
 
-#ggplot(data.frame(ratios1), aes(x=ratios1)) + geom_density()
-#ggplot(data.frame(ratios2), aes(x=ratios2)) + geom_density()
-#ggplot(data.frame(ratios3), aes(x=ratios3)) + geom_density()
+# confidence intervals
+print(CI1)
+print(CI2)
+print(CI3)
